@@ -69,5 +69,5 @@ result = num1 * num2;
 
 printf("%d\n", result);
 
-return (0);
+return (1);
 }
