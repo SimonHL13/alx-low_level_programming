@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -10,39 +11,27 @@
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-unsigned int i, j, size, len1, len2;
-char *ptr;
+char *p;
+unsigned int t1, t2, i;
 
 if (s1 == NULL)
-s1 = "";
+t1 = 0;
+for (t1 = 0; s1[t1]; ++t1)
+;
 if (s2 == NULL)
-s2 = "";
-len1 = _strlen(s1);
-len2 = _strlen(s2);
-if (n > len2)
-n = len2;
-size = len1 + n;
-ptr = malloc(sizeof(char) * size + 1);
-if (!ptr)
+t2 = 0;
+for (t2 = 0; s2[t2]; ++t2)
+;
+if (t2 > n)
+t2 = n;
+p = malloc((t1 + t2 + 1) * sizeof(char));
+if (p == NULL)
 return (NULL);
-for (i = 0; i < len1; i++)
-ptr[i] = s1[i];
-for (j = 0; j < n; j++, i++)
-ptr[i] = s2[j];
-ptr[i] = 0;
-return (ptr);
-}
+for (i = 0; i < t1; i++)
+p[i] = s1[i];
+for (i = 0; i < t2; i++)
+p[t1 + i] = s2[i];
+p[t1 + t2] = '\0';
 
-/**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
- */
-int _strlen(char *s)
-{
-char *p = s;
-
-while (*s)
-s++;
-return (s - p);
+return (p);
 }
