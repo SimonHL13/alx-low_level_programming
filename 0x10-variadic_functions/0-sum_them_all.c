@@ -9,7 +9,8 @@
  * On error, 0 is returned
  */
 
-int sum_them_all(const unsigned int n, ...)
+int sum_them_all
+(const unsigned int n, ...)
 {
 va_list list;
 unsigned int i, sum = 0;
